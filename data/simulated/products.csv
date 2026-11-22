@@ -1,0 +1,101 @@
+product_id,product_name,category,cost_price
+P001,Product 1,Clothing,659.27
+P002,Product 2,Clothing,1431.17
+P003,Product 3,Electronics,566.78
+P004,Product 4,Electronics,1208.97
+P005,Product 5,Clothing,988.52
+P006,Product 6,Personal Care,566.81
+P007,Product 7,Household,1150.95
+P008,Product 8,Groceries,1830.72
+P009,Product 9,Electronics,1808.66
+P010,Product 10,Clothing,584.62
+P011,Product 11,Personal Care,676.89
+P012,Product 12,Clothing,1972
+P013,Product 13,Clothing,1258.99
+P014,Product 14,Groceries,1877.76
+P015,Product 15,Household,959.74
+P016,Product 16,Groceries,843.32
+P017,Product 17,Groceries,1335.5
+P018,Product 18,Personal Care,347.08
+P019,Product 19,Clothing,1167.09
+P020,Product 20,Electronics,515.52
+P021,Product 21,Electronics,1926.6
+P022,Product 22,Groceries,1222.66
+P023,Product 23,Clothing,1054.31
+P024,Product 24,Household,835.02
+P025,Product 25,Groceries,1766.48
+P026,Product 26,Clothing,759.98
+P027,Product 27,Personal Care,612.07
+P028,Product 28,Household,382.76
+P029,Product 29,Electronics,385.73
+P030,Product 30,Personal Care,989.98
+P031,Product 31,Groceries,543.28
+P032,Product 32,Groceries,471.7
+P033,Product 33,Electronics,1365.03
+P034,Product 34,Clothing,142.94
+P035,Product 35,Household,1416.66
+P036,Product 36,Personal Care,736.18
+P037,Product 37,Personal Care,847.44
+P038,Product 38,Clothing,1650.86
+P039,Product 39,Groceries,1841.77
+P040,Product 40,Electronics,600.93
+P041,Product 41,Personal Care,1924.15
+P042,Product 42,Personal Care,1470.37
+P043,Product 43,Household,1388.43
+P044,Product 44,Personal Care,153.05
+P045,Product 45,Electronics,820.68
+P046,Product 46,Groceries,981.8
+P047,Product 47,Groceries,1142.49
+P048,Product 48,Clothing,1411.61
+P049,Product 49,Groceries,1835.58
+P050,Product 50,Personal Care,1255.78
+P051,Product 51,Groceries,885.42
+P052,Product 52,Electronics,1107.06
+P053,Product 53,Household,164.03
+P054,Product 54,Household,558.67
+P055,Product 55,Clothing,824.45
+P056,Product 56,Groceries,435.6
+P057,Product 57,Electronics,1672.26
+P058,Product 58,Groceries,348.13
+P059,Product 59,Electronics,1616.67
+P060,Product 60,Household,1116.31
+P061,Product 61,Personal Care,1341.52
+P062,Product 62,Personal Care,384.81
+P063,Product 63,Clothing,1284.46
+P064,Product 64,Groceries,658.15
+P065,Product 65,Household,1462.88
+P066,Product 66,Groceries,827.93
+P067,Product 67,Groceries,1940.25
+P068,Product 68,Clothing,1936.43
+P069,Product 69,Household,1467.07
+P070,Product 70,Groceries,551.57
+P071,Product 71,Clothing,482.49
+P072,Product 72,Personal Care,1206.44
+P073,Product 73,Clothing,571.67
+P074,Product 74,Electronics,1085.59
+P075,Product 75,Personal Care,1581.32
+P076,Product 76,Personal Care,377.72
+P077,Product 77,Clothing,838.58
+P078,Product 78,Electronics,969.57
+P079,Product 79,Electronics,1742.81
+P080,Product 80,Electronics,1855.13
+P081,Product 81,Household,1769.86
+P082,Product 82,Electronics,1364.66
+P083,Product 83,Electronics,1902.83
+P084,Product 84,Household,1057.07
+P085,Product 85,Household,1174.21
+P086,Product 86,Groceries,705.85
+P087,Product 87,Clothing,727.28
+P088,Product 88,Clothing,89.05
+P089,Product 89,Groceries,1030.49
+P090,Product 90,Clothing,1748.53
+P091,Product 91,Personal Care,62.29
+P092,Product 92,Electronics,190.51
+P093,Product 93,Clothing,370.21
+P094,Product 94,Electronics,1552.15
+P095,Product 95,Personal Care,1483.61
+P096,Product 96,Personal Care,1945.16
+P097,Product 97,Clothing,959.62
+P098,Product 98,Household,195.05
+P099,Product 99,Household,1315.2
+P100,Product 100,Household,1529.26

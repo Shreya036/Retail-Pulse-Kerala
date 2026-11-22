@@ -1,0 +1,104 @@
+
+> cat("RETAILPULSE-KERALA\n")
+RETAILPULSE-KERALA
+
+> cat("CUSTOMER ANALYSIS REPORT\n")
+CUSTOMER ANALYSIS REPORT
+
+> cat("====================================\n\n")
+====================================
+
+
+> cat("1. CUSTOMER OVERVIEW\n")
+1. CUSTOMER OVERVIEW
+
+> cat("------------------------------------\n")
+------------------------------------
+
+> cat("Total Eligible Customers:", nrow(rfm), "\n")
+Total Eligible Customers: 5878 
+
+> cat("Total Customer Segments:", n_distinct(rfm$Segment), "\n\n")
+Total Customer Segments: 6 
+
+
+> cat("2. RFM SEGMENT SUMMARY\n")
+2. RFM SEGMENT SUMMARY
+
+> cat("------------------------------------\n")
+------------------------------------
+
+> print(segment_summary)
+# A tibble: 6 × 4
+  Segment             Total_Customers Total_Revenue Average_Spending
+  <chr>                         <int>         <dbl>            <dbl>
+1 Hibernating                    2293      1237206.             540.
+2 Champions                      1288     11821862.            9178.
+3 Loyal Customers                1062      2984445.            2810.
+4 Potential Loyalists             711       813799.            1145.
+5 At Risk                         471       498437.            1058.
+6 New Customers                    53        19055.             360.
+
+> cat("\n3. HIGH-VALUE CUSTOMERS\n")
+
+3. HIGH-VALUE CUSTOMERS
+
+> cat("------------------------------------\n")
+------------------------------------
+
+> print(high_value_customers)
+# A tibble: 10 × 6
+   `Customer ID` Frequency Monetary Recency RFM_Score Segment            
+           <dbl>     <int>    <dbl>   <dbl>     <int> <chr>              
+ 1         18102       145  580987.    1.04        15 Champions          
+ 2         14646       151  528603.    2.03        15 Champions          
+ 3         14156       156  313438.   10.1         15 Champions          
+ 4         14911       398  291421.    1.87        15 Champions          
+ 5         17450        51  244784.    8.97        15 Champions          
+ 6         13694       143  195641.    4.14        15 Champions          
+ 7         17511        60  172133.    3.11        15 Champions          
+ 8         16446         2  168472.    1.15        12 Potential Loyalists
+ 9         16684        55  147143.    4.95        15 Champions          
+10         12415        28  144458.   24.9         14 Champions          
+
+> cat("\n4. AT-RISK CUSTOMERS\n")
+
+4. AT-RISK CUSTOMERS
+
+> cat("------------------------------------\n")
+------------------------------------
+
+> cat("Total At-Risk Customers:", nrow(at_risk_customers), "\n")
+Total At-Risk Customers: 471 
+
+> cat("Total At-Risk Customer Spending:",
++     round(sum(at_risk_customers$Monetary), 2), "\n")
+Total At-Risk Customer Spending: 498437.3 
+
+> cat("\n5. KEY BUSINESS INSIGHTS\n")
+
+5. KEY BUSINESS INSIGHTS
+
+> cat("------------------------------------\n")
+------------------------------------
+
+> cat("Champions are the highest revenue-generating segment.\n")
+Champions are the highest revenue-generating segment.
+
+> cat("Hibernating customers form the largest customer segment.\n")
+Hibernating customers form the largest customer segment.
+
+> cat("At-risk customers need targeted re-engagement campaigns.\n")
+At-risk customers need targeted re-engagement campaigns.
+
+> cat("High-value customers should receive loyalty benefits.\n")
+High-value customers should receive loyalty benefits.
+
+> cat("\n====================================\n")
+
+====================================
+
+> cat("END OF REPORT\n")
+END OF REPORT
+
+> sink()

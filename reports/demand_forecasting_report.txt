@@ -1,0 +1,106 @@
+
+> cat("RETAILPULSE KERALA\n")
+RETAILPULSE KERALA
+
+> cat("DEMAND FORECASTING REPORT\n")
+DEMAND FORECASTING REPORT
+
+> cat("==============================\n\n")
+==============================
+
+
+> cat("Historical Demand Summary\n")
+Historical Demand Summary
+
+> print(forecast_summary)
+# A tibble: 10 × 2
+   Metric                  Value                
+   <chr>                   <chr>                
+ 1 Total Historical Demand 11274570             
+ 2 Average Daily Demand    15256.5223274696     
+ 3 Highest Daily Demand    126137               
+ 4 Lowest Daily Demand     0                    
+ 5 Training Days           591                  
+ 6 Testing Days            148                  
+ 7 Best Forecasting Model  Exponential_Smoothing
+ 8 7-Day Forecast Total    240091.664845989     
+ 9 30-Day Forecast Total   1008878.17126922     
+10 90-Day Forecast Total   3086744.67265123     
+
+> cat("\nFair Model Comparison\n")
+
+Fair Model Comparison
+
+> print(model_comparison_fair)
+                  Model       MAE     RMSE     MAPE
+1        Moving_Average 11331.098 14773.34 43.99222
+2 Exponential_Smoothing  8774.489 12951.32 36.81953
+3                 ARIMA 11157.312 14614.56 43.42789
+
+> cat("\nSelected Model\n")
+
+Selected Model
+
+> print(best_model)
+                  Model      MAE     RMSE     MAPE
+1 Exponential_Smoothing 8774.489 12951.32 36.81953
+
+> cat("\n7-Day Forecast\n")
+
+7-Day Forecast
+
+> print(forecast_7_df)
+# A tibble: 7 × 2
+  Date       Predicted_Demand
+  <date>                <dbl>
+1 2011-12-10           20050.
+2 2011-12-11           28461.
+3 2011-12-12           39088.
+4 2011-12-13           39214.
+5 2011-12-14           37882.
+6 2011-12-15           40950.
+7 2011-12-16           34447.
+
+> cat("\n30-Day Forecast\n")
+
+30-Day Forecast
+
+> print(forecast_30_df)
+# A tibble: 30 × 2
+   Date       Predicted_Demand
+   <date>                <dbl>
+ 1 2011-12-10           20050.
+ 2 2011-12-11           28461.
+ 3 2011-12-12           39088.
+ 4 2011-12-13           39214.
+ 5 2011-12-14           37882.
+ 6 2011-12-15           40950.
+ 7 2011-12-16           34447.
+ 8 2011-12-17           20050.
+ 9 2011-12-18           28461.
+10 2011-12-19           39088.
+# ℹ 20 more rows
+# ℹ Use `print(n = ...)` to see more rows
+
+> cat("\n90-Day Forecast\n")
+
+90-Day Forecast
+
+> print(forecast_90_df)
+# A tibble: 90 × 2
+   Date       Predicted_Demand
+   <date>                <dbl>
+ 1 2011-12-10           20050.
+ 2 2011-12-11           28461.
+ 3 2011-12-12           39088.
+ 4 2011-12-13           39214.
+ 5 2011-12-14           37882.
+ 6 2011-12-15           40950.
+ 7 2011-12-16           34447.
+ 8 2011-12-17           20050.
+ 9 2011-12-18           28461.
+10 2011-12-19           39088.
+# ℹ 80 more rows
+# ℹ Use `print(n = ...)` to see more rows
+
+> sink()

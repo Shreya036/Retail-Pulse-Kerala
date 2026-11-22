@@ -1,0 +1,4 @@
+name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iteration|parent|children|seconds|warnings|error
+retail_data|stem|34ee25f3fb202fdc|51d3dac68a8535a8|2c530c1562a7fbd1|204779882||t20779.3651150858s|s12851862b|12851862|rds|local|vector|||2.98||
+business_summary|stem|c80aaa4d86e8cba6|5aed4f59630272eb|f216591e136c6438|1519652589||t20779.3651366422s|s202b|202|rds|local|vector|||0.24||
+business_summary_report|stem|042282a5858bd495|5eb084ac57e39a9a|2e4940ff417b1ebf|-536522875|reports/targets_business_summary.csv|t20779.3651379106s|s97b|97|file|local|vector|||0.02||

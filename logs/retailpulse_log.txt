@@ -1,0 +1,4 @@
+2026-11-22 13:38:38 | INFO | RetailPulse project started 
+2026-11-22 13:38:38 | SUCCESS | Data cleaning completed 
+2026-11-22 13:38:38 | SUCCESS | Operation completed successfully 
+2026-11-22 13:38:38 | ERROR | Operation failed: This is a test error 

@@ -1,0 +1,18 @@
+RETAILPULSE KERALA
+RECOMMENDATION ENGINE REPORT
+--------------------------------
+Restock recommendations: 52
+Fast-moving products: 10
+Slow-moving products: 10
+Low inventory products: 76
+Total replenishment records: 500
+Suppliers requiring attention: 18
+
+Recommendation Priority Summary:
+# A tibble: 4 × 4
+  Priority Total_Products Average_Stock Average_Reorder_Level
+  <chr>             <int>         <dbl>                 <dbl>
+1 Critical             24          19.5                  69.5
+2 High                 28          51.1                  65.9
+3 Low                 424         286.                   53.5
+4 Medium               24          87.5                  69.2

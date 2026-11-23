@@ -1,0 +1,108 @@
+
+---
+title: "RetailPulse Kerala - Business Recommendations Report"
+author: "Shreya S"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+# 1. Executive Summary
+
+This report presents business recommendations based on retail sales, customer segmentation, inventory analysis, demand forecasting and recommendation engine results.
+
+# 2. Load Business Data
+
+```{r setup, include=FALSE} id="p8x4m2"
+library(dplyr)
+library(ggplot2)
+library(knitr)
+
+business_summary <- read.csv("../reports/business_summary.csv")
+customer_segments <- read.csv("../reports/customer_segment_summary.csv")
+recommendations <- read.csv("../reports/recommendation_summary.csv")
+```
+
+# 3. Overall Business Performance
+
+```{r} id="r5k9w3"
+kable(business_summary)
+```
+
+# 4. Customer Segmentation Insights
+
+```{r} id="v2n6q8"
+kable(customer_segments)
+
+ggplot(customer_segments, aes(x = reorder(Segment, Customers), y = Customers, fill = Segment)) +
+  geom_col() +
+  coord_flip() +
+  labs(
+    title = "Customer Distribution by Segment",
+    x = "Customer Segment",
+    y = "Number of Customers"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+# 5. Inventory Recommendation Summary
+
+```{r} id="b7m3t1"
+kable(recommendations)
+```
+
+# 6. Key Business Findings
+
+- The United Kingdom contributes the largest share of historical revenue.
+- November recorded the highest monthly revenue.
+- Champions are the most valuable customer segment by revenue.
+- Low-stock products require replenishment attention.
+- Exponential Smoothing performed best among the three evaluated forecasting models.
+
+# 7. Business Recommendations
+
+## Sales Improvement
+
+- Focus marketing campaigns on high-performing products.
+- Review monthly sales trends to support promotional planning.
+- Explore opportunities to expand beyond the largest revenue market.
+
+## Customer Management
+
+- Reward Champions with loyalty benefits.
+- Create targeted campaigns for At Risk customers.
+- Encourage repeat purchases from Potential Loyalists.
+- Re-engage Hibernating customers.
+
+## Inventory Optimization
+
+- Monitor products below their reorder levels.
+- Prioritize critical replenishment requirements.
+- Review slow-moving products before ordering additional stock.
+- Coordinate replenishment with suppliers.
+
+## Demand Forecasting
+
+- Use forecasting results as a planning reference.
+- Monitor actual demand against predicted demand.
+- Retrain models when updated sales data becomes available.
+
+# 8. Implementation Plan
+
+| Priority | Recommended Action |
+|---|---|
+| High | Review low-stock products |
+| High | Retain valuable customers |
+| Medium | Improve demand planning |
+| Medium | Re-engage inactive customers |
+| Medium | Review slow-moving products |
+
+# 9. Conclusion
+
+RetailPulse Kerala combines sales analysis, customer segmentation, inventory analytics, demand forecasting and recommendation techniques to support retail business decisions.
+
+The recommendations can help improve customer retention, stock management and business planning.
+
+# 10. Data Limitations
+
+The main transaction dataset is international Online Retail II data covering December 2009 to December 2011. Kerala-specific store and inventory information is simulated separately. Inventory product IDs are not directly matched to sales StockCode values. Forecasts are based on historical data and are not live predictions.

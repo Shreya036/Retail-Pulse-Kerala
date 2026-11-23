@@ -1,0 +1,107 @@
+
+---
+title: "RetailPulse Kerala - Inventory Optimization Report"
+author: "Shreya S"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+# 1. Executive Summary
+
+This report analyzes inventory levels, fast-moving products, slow-moving products and stock replenishment requirements.
+
+# 2. Load Inventory Data
+
+```{r setup, include=FALSE}
+library(dplyr)
+library(ggplot2)
+library(knitr)
+
+inventory <- read.csv("../data/simulated/inventory.csv")
+products <- read.csv("../data/simulated/products.csv")
+
+inventory_data <- inventory %>%
+  left_join(products, by = "product_id")
+```
+
+# 3. Inventory Summary
+
+```{r}
+inventory_summary <- inventory_data %>%
+  summarise(
+    Total_Products = n(),
+    Total_Stock = sum(stock_quantity, na.rm = TRUE),
+    Low_Stock_Products = sum(stock_quantity <= reorder_level, na.rm = TRUE),
+    Average_Stock = mean(stock_quantity, na.rm = TRUE)
+  )
+
+kable(inventory_summary)
+```
+
+# 4. Stock by Product Category
+
+```{r}
+category_stock <- inventory_data %>%
+  group_by(category) %>%
+  summarise(
+    Total_Stock = sum(stock_quantity, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+kable(category_stock)
+
+ggplot(category_stock, aes(x = reorder(category, Total_Stock), y = Total_Stock, fill = category)) +
+  geom_col() +
+  coord_flip() +
+  labs(
+    title = "Inventory Stock by Category",
+    x = "Category",
+    y = "Total Stock"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+# 5. Low Stock Analysis
+
+```{r}
+low_stock <- inventory_data %>%
+  filter(stock_quantity <= reorder_level) %>%
+  arrange(stock_quantity)
+
+kable(head(low_stock, 20))
+```
+
+# 6. Reorder Recommendations
+
+```{r}
+reorder_recommendations <- inventory_data %>%
+  filter(stock_quantity <= reorder_level) %>%
+  mutate(
+    Reorder_Status = "Reorder Required",
+    Suggested_Stock = ceiling(reorder_level * 1.2)
+  )
+
+kable(head(reorder_recommendations, 20))
+```
+
+# 7. Business Insights
+
+- Products below or equal to their reorder level require attention.
+- Fast-moving products should be monitored to avoid stock shortages.
+- Slow-moving products should be reviewed before placing additional orders.
+- Supplier coordination can improve replenishment planning.
+
+# 8. Recommendations
+
+1. Monitor low-stock products regularly.
+2. Prioritize replenishment for critical inventory.
+3. Review slow-moving products to reduce excess stock.
+4. Maintain suitable safety stock levels.
+5. Coordinate with suppliers for timely replenishment.
+
+# 9. Conclusion
+
+Inventory analysis helps businesses monitor stock availability and make better replenishment decisions.
+
+**Data Limitation:** Inventory and product information in this project is simulated. The inventory product IDs are not directly matched to the StockCode values in the historical Online Retail II sales dataset. Therefore, inventory and sales analyses are presented separately.

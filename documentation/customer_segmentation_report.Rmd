@@ -1,0 +1,102 @@
+
+---
+title: "RetailPulse Kerala - Customer Segmentation Report"
+author: "Shreya S"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+# 1. Executive Summary
+
+This report analyzes customer purchasing behaviour using RFM analysis (Recency, Frequency and Monetary). It identifies valuable customers and customers who may need retention campaigns.
+
+# 2. Load Customer Data
+
+```{r setup, include=FALSE}
+library(dplyr)
+library(ggplot2)
+library(knitr)
+
+rfm <- readRDS("../data/processed/rfm_customer_data.rds")
+```
+
+# 3. Customer Segment Summary
+
+```{r}
+segment_summary <- rfm %>%
+  group_by(Segment) %>%
+  summarise(
+    Customers = n(),
+    Total_Revenue = sum(Monetary, na.rm = TRUE),
+    Average_Revenue = mean(Monetary, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+kable(segment_summary, digits = 2)
+```
+
+# 4. Customer Distribution
+
+```{r}
+ggplot(segment_summary, aes(x = reorder(Segment, Customers), y = Customers, fill = Segment)) +
+  geom_col() +
+  coord_flip() +
+  labs(
+    title = "Customer Distribution by Segment",
+    x = "Customer Segment",
+    y = "Number of Customers"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+# 5. Revenue by Customer Segment
+
+```{r}
+ggplot(segment_summary, aes(x = reorder(Segment, Total_Revenue), y = Total_Revenue, fill = Segment)) +
+  geom_col() +
+  coord_flip() +
+  labs(
+    title = "Revenue Contribution by Customer Segment",
+    x = "Customer Segment",
+    y = "Revenue"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+# 6. RFM Analysis
+
+```{r}
+rfm_summary <- rfm %>%
+  summarise(
+    Total_Customers = n(),
+    Average_Recency = mean(Recency, na.rm = TRUE),
+    Average_Frequency = mean(Frequency, na.rm = TRUE),
+    Average_Monetary = mean(Monetary, na.rm = TRUE)
+  )
+
+kable(rfm_summary, digits = 2)
+```
+
+# 7. Business Insights
+
+- Champions contribute the highest customer revenue.
+- Loyal customers provide an important source of repeat business.
+- At-risk customers may need targeted engagement campaigns.
+- Hibernating customers can be approached with reactivation offers.
+- New customers can be encouraged to make repeat purchases.
+
+# 8. Recommendations
+
+1. Provide loyalty rewards to Champions.
+2. Create special offers for At Risk customers.
+3. Use email campaigns to reconnect with Hibernating customers.
+4. Encourage Potential Loyalists to purchase more frequently.
+5. Build retention strategies for valuable customers.
+
+# 9. Conclusion
+
+RFM segmentation helps identify valuable customers and customers who may need additional attention. These insights can support targeted marketing and customer retention strategies.
+
+**Data Limitation:** The transaction dataset covers December 2009 to December 2011. Customer recency is calculated relative to the final date in this historical dataset, not the current date.

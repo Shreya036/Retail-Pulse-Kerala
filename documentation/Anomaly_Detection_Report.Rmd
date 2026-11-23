@@ -1,0 +1,105 @@
+
+---
+title: "RetailPulse Kerala - Anomaly Detection Report"
+author: "Shreya S"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+# 1. Executive Summary
+
+This report identifies unusual patterns in retail transactions using statistical analysis.
+
+# 2. Load Data
+
+```{r setup, include=FALSE} id="k7p4x2"
+library(dplyr)
+library(ggplot2)
+library(knitr)
+
+retail_clean <- readRDS("../data/processed/retail_cleaned.rds")
+```
+
+# 3. Revenue Summary
+
+```{r} id="m8q2w5"
+revenue_summary <- retail_clean %>%
+  summarise(
+    Total_Revenue = sum(Revenue, na.rm = TRUE),
+    Average_Revenue = mean(Revenue, na.rm = TRUE),
+    Revenue_SD = sd(Revenue, na.rm = TRUE)
+  )
+
+kable(revenue_summary, digits = 2)
+```
+
+# 4. Identify Unusual Revenue Transactions
+
+The analysis uses the interquartile range (IQR) method to flag unusually high or low transaction revenue values.
+
+```{r} id="n3v6b9"
+q1 <- quantile(retail_clean$Revenue, 0.25, na.rm = TRUE)
+q3 <- quantile(retail_clean$Revenue, 0.75, na.rm = TRUE)
+iqr_value <- IQR(retail_clean$Revenue, na.rm = TRUE)
+
+lower_limit <- q1 - 1.5 * iqr_value
+upper_limit <- q3 + 1.5 * iqr_value
+
+anomalies <- retail_clean %>%
+  filter(Revenue < lower_limit | Revenue > upper_limit)
+
+anomaly_summary <- data.frame(
+  Lower_Limit = lower_limit,
+  Upper_Limit = upper_limit,
+  Anomaly_Count = nrow(anomalies),
+  Anomaly_Percentage = round(nrow(anomalies) / nrow(retail_clean) * 100, 2)
+)
+
+kable(anomaly_summary, digits = 2)
+```
+
+# 5. Anomaly Visualization
+
+```{r} id="p5r8s1"
+ggplot(retail_clean, aes(x = Revenue)) +
+  geom_histogram(bins = 50, fill = "steelblue", color = "white") +
+  geom_vline(xintercept = upper_limit, color = "red", linewidth = 1) +
+  geom_vline(xintercept = lower_limit, color = "darkorange", linewidth = 1) +
+  coord_cartesian(xlim = quantile(retail_clean$Revenue, c(0.01, 0.99), na.rm = TRUE)) +
+  labs(
+    title = "Revenue Distribution and Anomaly Limits",
+    x = "Transaction Revenue",
+    y = "Frequency"
+  ) +
+  theme_minimal()
+```
+
+# 6. Sample Anomalies
+
+```{r} id="t2u6w9"
+anomalies %>%
+  select(Invoice, StockCode, Description, Quantity, Price, Revenue, Country) %>%
+  arrange(desc(abs(Revenue))) %>%
+  head(20) %>%
+  kable()
+```
+
+# 7. Business Insights
+
+- Unusually high or low transaction values may require further investigation.
+- High-value transactions can be reviewed for unusual purchasing patterns.
+- Negative revenue transactions may relate to returns or cancellations.
+- Statistical anomalies do not automatically indicate fraud or errors.
+
+# 8. Recommendations
+
+1. Review unusually high-value transactions.
+2. Investigate unusual negative revenue records.
+3. Monitor transaction patterns regularly.
+4. Validate suspicious records before making business decisions.
+
+# 9. Conclusion
+
+The IQR method provides a simple way to identify unusual transaction revenue values. These results can help businesses investigate exceptional transactions.
+
+**Data Limitation:** Anomalies are statistical flags based on transaction revenue, not confirmed fraud or data errors. The dataset covers December 2009 to December 2011.

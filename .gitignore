@@ -1,4 +1,42 @@
-.Rproj.user
+
+# R history and session files
 .Rhistory
+.Rapp.history
 .RData
+.RDataTmp
 .Ruserdata
+
+# RStudio files
+.Rproj.user/
+
+# Environment files
+.Renviron
+.env
+
+# Package build files
+*-Ex.R
+/*.tar.gz
+/*.Rcheck/
+src/*.o
+src/*.so
+src/*.dll
+
+# R Markdown and cache
+*_cache/
+/cache/
+*.utf8.md
+*.knit.md
+
+# Documentation temporary files
+vignettes/*.html
+vignettes/*.pdf
+docs/
+
+# Authentication tokens
+.httr-oauth
+
+# Translation temporary files
+po/*~
+
+# RStudio Connect
+rsconnect/
